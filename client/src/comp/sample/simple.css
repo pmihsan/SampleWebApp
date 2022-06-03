@@ -1,0 +1,18 @@
+body{
+    background-color: antiquewhite;
+}
+
+.contain{
+    background-color: aliceblue;
+    display: grid;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 600px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
