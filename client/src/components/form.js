@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Main = () => {
+const Form = () => {
 
     const [uname,setUname] = useState('');
     const [passwd,setPasswd] = useState(''); 
@@ -45,9 +46,12 @@ const Main = () => {
                     <label htmlFor="passd">Password</label><br/><input type="password" value={passwd} onChange={handlePasswd} placeholder="Enter your password" id="passd" required/> <br/>
                     <button type="submit">Submit</button>
                 </form>
+                <h1>Go back to home Page</h1>
+                <label htmlFor="form"><Link to="/"><input id="form" type="button" value="Home Page"/></Link></label>
+                
         </div>
         </>
     )
 }
 
-export default Main;
+export default Form;
