@@ -12,26 +12,40 @@ const Main = () => {
     const handlePasswd = (event) => {
         setPasswd(event.target.value);
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) =>  {
         event.preventDefault();
         const userFields = {
             UserName : uname,
             Password: passwd,
         };
         console.log(userFields);
-        console.log("Form Submitted");
-        // alert(userFields.Password);
+        // console.log("Form Submitted");
+        try{
+            let res = await fetch("http://localhost:5000/client/form", {
+                credentials: 'include',
+                method: 'POST',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userFields)
+            });
+            let response = await res.json();
+            console.log(response.msg);
+        }
+        catch(err){
+            console.log("Internal Error: ", err);
+        }   
     }
-
     return(
         <>
-            <div>
+        <div>
                 <form onSubmit={handleSubmit}><label>User Form</label><br/><br/>
-                    <label for="uname">Username</label><br/><input type="text" value={uname} onChange={handleUser} placeholder="Enter your username" id="uname"/> <br/>
-                    <label for="passd">Password</label><br/><input type="password" value={passwd} onChange={handlePasswd} placeholder="Enter your password" id="passd"/> <br/>
+                    <label htmlFor="uname">Username</label><br/><input type="text" value={uname} onChange={handleUser} placeholder="Enter your username" id="uname" required/> <br/>
+                    <label htmlFor="passd">Password</label><br/><input type="password" value={passwd} onChange={handlePasswd} placeholder="Enter your password" id="passd" required/> <br/>
                     <button type="submit">Submit</button>
                 </form>
-            </div>
+        </div>
         </>
     )
 }
